@@ -8,7 +8,7 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class AuthenticateUserRequest {
+public class AuthenticateUserRequestDTO {
     @Email(message = "The access email must be a valid email address.")
     @NotEmpty(message = "The access email is required.")
     private String email;

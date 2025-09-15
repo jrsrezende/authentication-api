@@ -9,7 +9,7 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class CreateUserRequest {
+public class CreateUserRequestDTO {
     @Size(min = 6, max = 100, message = "The username must be between 6 and 100 characters.")
     @Pattern(regexp = "^[A-Za-zÀ-Üà-ü\\s]{6,100}$", message = "The name can only contain letters and spaces and must be between 6 and 100 characters.")
     @NotEmpty(message = "The username is required.")

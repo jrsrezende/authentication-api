@@ -1,4 +1,4 @@
-package br.com.jrsr.authenticationapi.dto.auth;
+package br.com.jrsr.authenticationapi.dto.user;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -8,12 +8,10 @@ import java.util.UUID;
 
 @Getter
 @Setter
-public class AuthenticateUserResponse {
+public class CreateUserResponseDTO {
 
     private UUID id;
     private String name;
     private String email;
-    private String token;
-    private LocalDateTime accessedAt;
-    private LocalDateTime expiresAt;
+    private LocalDateTime createdAt;
 }
