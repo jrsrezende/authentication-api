@@ -10,7 +10,6 @@ import br.com.jrsr.authenticationapi.exceptions.EmailAlreadyRegisteredException;
 import br.com.jrsr.authenticationapi.helpers.CryptoHelper;
 import br.com.jrsr.authenticationapi.helpers.JwtHelper;
 import br.com.jrsr.authenticationapi.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -18,8 +17,11 @@ import java.time.LocalDateTime;
 @Service
 public class UserService {
 
-    @Autowired
-    private UserRepository repository;
+    private final UserRepository repository;
+
+    public UserService(UserRepository repository) {
+        this.repository = repository;
+    }
 
     public CreateUserResponseDTO createUser(CreateUserRequestDTO request) {
         if (repository.findByEmail(request.getEmail()) != null) {
