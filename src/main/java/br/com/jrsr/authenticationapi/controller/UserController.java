@@ -31,8 +31,7 @@ public class UserController {
             @ApiResponse(responseCode = "409", description = "Email already registered")
     })
     @PostMapping("create")
-    public ResponseEntity<CreateUserResponseDTO> createUser(
-            @RequestBody @Valid CreateUserRequestDTO request) {
+    public ResponseEntity<CreateUserResponseDTO> createUser(@RequestBody @Valid CreateUserRequestDTO request) {
         CreateUserResponseDTO response = service.createUser(request);
         return ResponseEntity.status(201).body(response);
     }
@@ -44,8 +43,7 @@ public class UserController {
             @ApiResponse(responseCode = "401", description = "Authentication failed")
     })
     @PostMapping("authenticate")
-    public ResponseEntity<AuthenticateUserResponseDTO> authenticateUser(
-            @RequestBody @Valid AuthenticateUserRequestDTO request) {
+    public ResponseEntity<AuthenticateUserResponseDTO> authenticateUser(@RequestBody @Valid AuthenticateUserRequestDTO request) {
         AuthenticateUserResponseDTO response = service.authenticateUser(request);
         return ResponseEntity.status(200).body(response);
     }

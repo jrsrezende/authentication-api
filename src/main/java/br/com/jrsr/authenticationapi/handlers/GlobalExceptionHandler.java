@@ -12,8 +12,8 @@ import java.util.Map;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<Object> handleGlobalException(Exception e){
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<Object> handleGlobalException(RuntimeException e){
 
         Map<String, Object> body = new HashMap<>();
         body.put("status", HttpStatus.INTERNAL_SERVER_ERROR.value());

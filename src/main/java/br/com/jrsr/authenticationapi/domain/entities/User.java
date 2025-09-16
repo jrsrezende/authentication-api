@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 @Setter
 @Getter
 @NoArgsConstructor
@@ -29,7 +29,6 @@ public class User {
     @Column(name = "password", length = 100, nullable = false)
     private String password;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "createdAt", nullable = false)
+    @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
 }
