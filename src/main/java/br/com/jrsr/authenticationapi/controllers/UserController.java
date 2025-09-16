@@ -1,10 +1,10 @@
-package br.com.jrsr.authenticationapi.controller;
+package br.com.jrsr.authenticationapi.controllers;
 
 import br.com.jrsr.authenticationapi.dto.auth.AuthenticateUserRequestDTO;
 import br.com.jrsr.authenticationapi.dto.auth.AuthenticateUserResponseDTO;
 import br.com.jrsr.authenticationapi.dto.user.CreateUserRequestDTO;
 import br.com.jrsr.authenticationapi.dto.user.CreateUserResponseDTO;
-import br.com.jrsr.authenticationapi.service.UserService;
+import br.com.jrsr.authenticationapi.services.UserService;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;

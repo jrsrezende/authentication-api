@@ -70,9 +70,9 @@ public class CreateUserTest {
 
             assertEquals(400, result.getResponse().getStatus());
 
-            assertTrue(result.getResponse().getContentAsString().contains("The username is required."));
-            assertTrue(result.getResponse().getContentAsString().contains("The user's email is required."));
-            assertTrue(result.getResponse().getContentAsString().contains("The user's password is required."));
+            assertTrue(result.getResponse().getContentAsString().contains("Username is required."));
+            assertTrue(result.getResponse().getContentAsString().contains("Email is required."));
+            assertTrue(result.getResponse().getContentAsString().contains("Password is required."));
         } catch (Exception e) {
             fail("Test Failed: " + e.getMessage());
         }
@@ -95,7 +95,7 @@ public class CreateUserTest {
 
             assertEquals(400, result.getResponse().getStatus());
 
-            assertTrue(result.getResponse().getContentAsString().contains("The password must contain at least one uppercase letter, one lowercase letter, a number, a special character, and be at least 8 characters long."));
+            assertTrue(result.getResponse().getContentAsString().contains("Password must be at least 8 characters long, with at least one uppercase letter, one lowercase letter, one number, and one special character."));
         } catch (Exception e) {
             fail("Test Failed: " + e.getMessage());
         }

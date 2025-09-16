@@ -1,4 +1,4 @@
-package br.com.jrsr.authenticationapi.repository;
+package br.com.jrsr.authenticationapi.repositories;
 
 import br.com.jrsr.authenticationapi.domain.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;

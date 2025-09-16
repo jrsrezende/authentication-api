@@ -1,4 +1,4 @@
-package br.com.jrsr.authenticationapi.handler;
+package br.com.jrsr.authenticationapi.handlers;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

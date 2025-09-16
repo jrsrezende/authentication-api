@@ -10,7 +10,7 @@ services:
     depends_on:
       - postgres
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/db-authentication-api
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/authentication_db
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: 12345
 
@@ -18,7 +18,7 @@ services:
     image: postgres:15
     container_name: postgres-authentication
     environment:
-      POSTGRES_DB: db-authentication-api
+      POSTGRES_DB: authentication_db
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 12345
     ports:

@@ -1,4 +1,4 @@
-package br.com.jrsr.authenticationapi.service;
+package br.com.jrsr.authenticationapi.services;
 
 import br.com.jrsr.authenticationapi.dto.auth.AuthenticateUserRequestDTO;
 import br.com.jrsr.authenticationapi.dto.auth.AuthenticateUserResponseDTO;
@@ -9,7 +9,7 @@ import br.com.jrsr.authenticationapi.exceptions.AccessDeniedException;
 import br.com.jrsr.authenticationapi.exceptions.EmailAlreadyRegisteredException;
 import br.com.jrsr.authenticationapi.helpers.CryptoHelper;
 import br.com.jrsr.authenticationapi.helpers.JwtHelper;
-import br.com.jrsr.authenticationapi.repository.UserRepository;
+import br.com.jrsr.authenticationapi.repositories.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
