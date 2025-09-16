@@ -1,6 +1,6 @@
-package br.com.jrsr.authenticationapi.handlers;
+package br.com.jrsr.authenticationapi.handler;
 
-import br.com.jrsr.authenticationapi.exceptions.AccessDeniedException;
+import br.com.jrsr.authenticationapi.exceptions.EmailAlreadyRegisteredException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -11,17 +11,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestControllerAdvice
-public class AccessDeniedExceptionHandler {
+public class EmailAlreadyRegisteredExceptionHandler {
 
-    @ExceptionHandler(AccessDeniedException.class)
-    public ResponseEntity<Object> handleAccessDeniedException(AccessDeniedException e) {
+    @ExceptionHandler(EmailAlreadyRegisteredException.class)
+    public ResponseEntity<Object> handleEmailAlreadyRegisteredException(EmailAlreadyRegisteredException e){
 
         Map<String, Object> body = new HashMap<>();
-        body.put("status", HttpStatus.UNAUTHORIZED.value());
+        body.put("status", HttpStatus.CONFLICT.value());
         body.put("timestamp", LocalDateTime.now());
         body.put("error", e.getMessage());
 
-        return ResponseEntity.status(401).body(body);
+        return ResponseEntity.status(409).body(body);
     }
 }
-

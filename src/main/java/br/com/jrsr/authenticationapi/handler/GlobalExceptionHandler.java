@@ -1,4 +1,4 @@
-package br.com.jrsr.authenticationapi.handlers;
+package br.com.jrsr.authenticationapi.handler;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,6 +36,6 @@ public class GlobalExceptionHandler {
         body.put("timestamp", LocalDateTime.now());
         body.put("errors", fieldErrors);
 
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
+        return ResponseEntity.status(400).body(body);
     }
 }

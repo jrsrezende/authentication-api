@@ -14,6 +14,6 @@ public class JwtHelper {
         Date exp = new Date(now.getTime() + expiration);
 
         return Jwts.builder().setSubject(email).setIssuedAt(now).setExpiration(exp)
-                .signWith(Keys.hmacShaKeyFor(secretkey.getBytes(StandardCharsets.UTF_8)), SignatureAlgorithm.HS256).compact();
+                .signWith(Keys.hmacShaKeyFor(secretkey.getBytes()), SignatureAlgorithm.HS256).compact();
     }
 }
