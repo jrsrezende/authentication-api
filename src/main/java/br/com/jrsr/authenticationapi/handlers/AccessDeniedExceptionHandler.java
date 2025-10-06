@@ -14,12 +14,12 @@ import java.util.Map;
 public class AccessDeniedExceptionHandler {
 
     @ExceptionHandler(AccessDeniedException.class)
-    public ResponseEntity<Object> handleAccessDeniedException(AccessDeniedException e) {
+    public ResponseEntity<Map<String, Object>> handleAccessDeniedException(AccessDeniedException e) {
 
         Map<String, Object> body = new HashMap<>();
         body.put("status", HttpStatus.UNAUTHORIZED.value());
         body.put("timestamp", LocalDateTime.now());
-        body.put("error", e.getMessage());
+        body.put("message", e.getMessage());
 
         return ResponseEntity.status(401).body(body);
     }

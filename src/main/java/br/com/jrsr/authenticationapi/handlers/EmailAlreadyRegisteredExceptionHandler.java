@@ -14,12 +14,12 @@ import java.util.Map;
 public class EmailAlreadyRegisteredExceptionHandler {
 
     @ExceptionHandler(EmailAlreadyRegisteredException.class)
-    public ResponseEntity<Object> handleEmailAlreadyRegisteredException(EmailAlreadyRegisteredException e){
+    public ResponseEntity<Map<String, Object>> handleEmailAlreadyRegisteredException(EmailAlreadyRegisteredException e){
 
         Map<String, Object> body = new HashMap<>();
         body.put("status", HttpStatus.CONFLICT.value());
         body.put("timestamp", LocalDateTime.now());
-        body.put("error", e.getMessage());
+        body.put("message", e.getMessage());
 
         return ResponseEntity.status(409).body(body);
     }

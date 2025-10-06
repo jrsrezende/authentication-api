@@ -10,6 +10,7 @@ import br.com.jrsr.authenticationapi.exceptions.EmailAlreadyRegisteredException;
 import br.com.jrsr.authenticationapi.helpers.CryptoHelper;
 import br.com.jrsr.authenticationapi.helpers.JwtHelper;
 import br.com.jrsr.authenticationapi.repositories.UserRepository;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -19,12 +20,15 @@ public class UserService {
 
     private final UserRepository repository;
 
+    @Value("${jwt_key}")
+    private String jwtKey;
+
     public UserService(UserRepository repository) {
         this.repository = repository;
     }
 
     public CreateUserResponseDTO createUser(CreateUserRequestDTO request) {
-        if (repository.findByEmail(request.getEmail()) != null) {
+        if (repository.findByEmail(request.getEmail()).isPresent()) {
             throw new EmailAlreadyRegisteredException("Email already registered.");
         }
 
@@ -32,7 +36,6 @@ public class UserService {
         user.setName(request.getName());
         user.setEmail(request.getEmail());
         user.setPassword(CryptoHelper.getSha256(request.getPassword()));
-        user.setCreatedAt(LocalDateTime.now());
 
         repository.save(user);
 
@@ -46,13 +49,14 @@ public class UserService {
     }
 
     public AuthenticateUserResponseDTO authenticateUser(AuthenticateUserRequestDTO request) {
-        User user = repository.findByEmailAndPassword(request.getEmail(), CryptoHelper.getSha256(request.getPassword()));
+        User user = repository.findByEmail(request.getEmail())
+                .orElseThrow(() -> new AccessDeniedException("Access denied. Incorrect email or password."));
 
-        if (user == null) {
-            throw new AccessDeniedException("Access denied. Invalid user.");
+        if (!user.getPassword().equals(CryptoHelper.getSha256(request.getPassword()))) {
+            throw new AccessDeniedException("Access denied. Incorrect email or password.");
         }
 
-        String token = JwtHelper.generateToken(request.getEmail(), 3600000L, "mysecretkeyfortheauthenticationapi");
+        String token = JwtHelper.generateToken(request.getEmail(), 3600000L, jwtKey);
 
         AuthenticateUserResponseDTO response = new AuthenticateUserResponseDTO();
         response.setId(user.getId());

@@ -1,7 +1,5 @@
 package br.com.jrsr.authenticationapi.helpers;
 
-import br.com.jrsr.authenticationapi.exceptions.CryptoException;
-
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -23,7 +21,7 @@ public class CryptoHelper {
             }
             return hexString.toString();
         } catch (NoSuchAlgorithmException e) {
-            throw new CryptoException("Error generating SHA-256 hash.", e);
+            throw new RuntimeException("Error generating SHA-256 hash.", e);
         }
     }
 }

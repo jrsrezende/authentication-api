@@ -7,6 +7,6 @@ COPY . /app
 # Comando para fazer o DEPLOY do projeto
 RUN ./mvnw -B clean package -DskipTests
 # Porta em que o projeto será executado
-EXPOSE 8081
+EXPOSE 8080
 # Script para executar o projeto
 CMD ["java", "-jar", "target/authentication-api-0.0.1-SNAPSHOT.jar"]

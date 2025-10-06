@@ -32,17 +32,17 @@ public class CreateUserTest {
     private static String userEmail;
 
     @Test
-    @DisplayName("Should successfully create a user.")
+    @DisplayName("Create a user successfully")
     @Order(1)
     public void createUserSuccessfully() {
         try {
             CreateUserRequestDTO request = new CreateUserRequestDTO();
             Faker faker = new Faker();
-            request.setName(faker.name().fullName());
+            request.setName("João Rezende");
             request.setEmail(faker.internet().emailAddress());
             request.setPassword("StrongP@ssw0rd!");
 
-            var result = mockMvc.perform(post("/api/v1/users/create")
+            MvcResult result = mockMvc.perform(post("/api/v1/users/create")
                     .contentType("application/json")
                     .content(objectMapper.writeValueAsString(request))).andReturn();
 
@@ -55,7 +55,7 @@ public class CreateUserTest {
     }
 
     @Test
-    @DisplayName("Should validate all required fields.")
+    @DisplayName("Validate all required fields.")
     @Order(2)
     public void validateRequiredFields() {
         try {
@@ -79,13 +79,13 @@ public class CreateUserTest {
     }
 
     @Test
-    @DisplayName("Should validate the strong password.")
+    @DisplayName("Validate the strong password.")
     @Order(3)
     public void validateStrongPassword() {
         try {
             CreateUserRequestDTO request = new CreateUserRequestDTO();
             Faker faker = new Faker();
-            request.setName(faker.name().fullName());
+            request.setName("JoãoRezende");
             request.setEmail(faker.internet().emailAddress());
             request.setPassword("weakpass");
 
@@ -102,13 +102,13 @@ public class CreateUserTest {
     }
 
     @Test
-    @DisplayName("Should not allow registering duplicate emails for the user.")
+    @DisplayName("Don't allow registering duplicate emails for the user.")
     @Order(4)
     public void checkEmailAlreadyRegistered() {
         try {
             CreateUserRequestDTO request = new CreateUserRequestDTO();
             Faker faker = new Faker();
-            request.setName(faker.name().fullName());
+            request.setName("João Rezende");
             request.setEmail(userEmail);
             request.setPassword("StrongP@ssw0rd!");
 

@@ -29,7 +29,7 @@ public class AuthenticateUserTest {
     private ObjectMapper objectMapper; // serialize and deserialize JSON objects
 
     @Test
-    @DisplayName("Should authenticate user successfully.")
+    @DisplayName("Authenticate user successfully.")
     public void authenticateSuccessfully() {
         try {
             CreateUserRequestDTO request = new CreateUserRequestDTO();
@@ -47,7 +47,7 @@ public class AuthenticateUserTest {
                     .contentType("application/json")
                     .content(objectMapper.writeValueAsString(request))).andReturn();
 
-            var resultAuthenticate = mockMvc.perform(post("/api/v1/users/authenticate")
+            MvcResult resultAuthenticate = mockMvc.perform(post("/api/v1/users/authenticate")
                     .contentType("application/json")
                     .content(objectMapper.writeValueAsString(requestAuthenticate))).andReturn();
 
@@ -59,7 +59,7 @@ public class AuthenticateUserTest {
     }
 
     @Test
-    @DisplayName("Should validate all required fields.")
+    @DisplayName("Validate all required fields.")
     public void validateRequiredFields() {
         try {
             AuthenticateUserRequestDTO request = new AuthenticateUserRequestDTO();
@@ -79,7 +79,7 @@ public class AuthenticateUserTest {
     }
 
     @Test
-    @DisplayName("Should return access denied for invalid user.")
+    @DisplayName("Return access denied for invalid user.")
     public void accessDenied() {
         try {
             Faker faker = new Faker();
