@@ -11,9 +11,7 @@ import lombok.Setter;
 @Getter
 public class CreateUserRequestDTO {
 
-    @Size(min = 6, max = 100, message = "Username must be between 6 and 100 characters.")
-    @Pattern(regexp = "^[A-Za-zÀ-ÿ ]+$",
-            message = "Username can only contain letters and spaces.")
+    @Size(min = 8, max = 100, message = "Username must be between 8 and 100 characters.")
     @NotEmpty(message = "Username is required.")
     private String name;
 
@@ -22,7 +20,7 @@ public class CreateUserRequestDTO {
     private String email;
 
     @Pattern(
-            regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[\\W_]).{8,}$",
+            regexp = "(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[\\W_]).{8,}$",
             message = "Password must be at least 8 characters long, with at least one uppercase letter, one lowercase letter, one number, and one special character."
     )
     @NotEmpty(message = "Password is required.")
