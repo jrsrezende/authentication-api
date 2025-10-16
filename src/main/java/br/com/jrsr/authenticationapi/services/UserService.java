@@ -13,8 +13,6 @@ import br.com.jrsr.authenticationapi.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
-
 @Service
 public class UserService {
 
@@ -63,8 +61,6 @@ public class UserService {
         response.setName(user.getName());
         response.setEmail(user.getEmail());
         response.setToken(token);
-        response.setAccessedAt(LocalDateTime.now());
-        response.setExpiresAt(LocalDateTime.now().plusSeconds(3600000L / 1000));
 
         return response;
     }
