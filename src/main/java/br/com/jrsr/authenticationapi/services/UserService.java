@@ -54,7 +54,9 @@ public class UserService {
             throw new AccessDeniedException("Access denied. Incorrect email or password.");
         }
 
-        String token = JwtHelper.generateToken(request.getEmail(), 3600000L, jwtKey);
+        long expiration = 3600000L;
+
+        String token = JwtHelper.generateToken(request.getEmail(), expiration, jwtKey);
 
         AuthenticateUserResponseDTO response = new AuthenticateUserResponseDTO();
         response.setId(user.getId());
