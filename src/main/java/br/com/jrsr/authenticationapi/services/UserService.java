@@ -20,7 +20,7 @@ public class UserService {
 
     private final UserRepository repository;
 
-    @Value("${jwt_key}")
+    @Value("${jwt.key}")
     private String jwtKey;
 
     public UserService(UserRepository repository) {
