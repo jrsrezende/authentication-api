@@ -13,6 +13,9 @@ import br.com.jrsr.authenticationapi.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+
 @Service
 public class UserService {
 
@@ -63,7 +66,10 @@ public class UserService {
         response.setName(user.getName());
         response.setEmail(user.getEmail());
         response.setToken(token);
-
+        LocalDateTime accessedAt = JwtHelper.parseToken(token, jwtKey).getIssuedAt().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+        response.setAccessedAt(accessedAt);
+        LocalDateTime expiresAt = JwtHelper.parseToken(token, jwtKey).getExpiration().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+        response.setExpiresAt(expiresAt);
         return response;
     }
 }
