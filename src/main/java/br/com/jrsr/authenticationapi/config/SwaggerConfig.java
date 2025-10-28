@@ -19,7 +19,7 @@ public class SwaggerConfig {
                         .description("API for user authentication")
                         .contact(new Contact()
                                 .name("João Rezende")
-                                .email("joao@example.com")
+                                .email("joaoricardorezende@gmail.com")
                         ))
                 .externalDocs(new ExternalDocumentation()
                         .description("Complete Documentation")

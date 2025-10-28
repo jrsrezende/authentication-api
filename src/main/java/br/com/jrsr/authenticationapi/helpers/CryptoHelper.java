@@ -12,6 +12,7 @@ public class CryptoHelper {
             byte[] hash = digest.digest(value.getBytes(StandardCharsets.UTF_8));
 
             StringBuilder hexString = new StringBuilder();
+
             for (byte b : hash) {
                 String hex = Integer.toHexString(0xff & b);
                 if (hex.length() == 1) {
@@ -20,6 +21,7 @@ public class CryptoHelper {
                 hexString.append(hex);
             }
             return hexString.toString();
+
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException("Error generating SHA-256 hash.", e);
         }
